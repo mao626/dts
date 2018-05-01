@@ -1,6 +1,6 @@
 package com.mao.spring;
 
-import com.mao.service.ExecuteService;
+import com.mao.service.TransactionManager;
 import org.springframework.transaction.support.TransactionSynchronization;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
 
@@ -9,10 +9,10 @@ import org.springframework.transaction.support.TransactionSynchronizationAdapter
  */
 public class MyTransactionSynchronizationAdapter extends TransactionSynchronizationAdapter {
 
-    private ExecuteService service;
+    private TransactionManager manager;
 
-    public MyTransactionSynchronizationAdapter(ExecuteService service) {
-        this.service = service;
+    public MyTransactionSynchronizationAdapter(TransactionManager manager) {
+        this.manager = manager;
     }
 
     @Override
@@ -23,10 +23,12 @@ public class MyTransactionSynchronizationAdapter extends TransactionSynchronizat
                 //todo 日志打印
                 break;
             case TransactionSynchronization.STATUS_COMMITTED:
-                service.commit();
+                manager.commit();
                 break;
             case TransactionSynchronization.STATUS_ROLLED_BACK:
-                service.rollback();
+                manager.rollback();
+                break;
+            default:
                 break;
         }
     }
