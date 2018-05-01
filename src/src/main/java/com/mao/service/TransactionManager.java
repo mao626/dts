@@ -52,6 +52,10 @@ public class TransactionManager {
 
     }
 
+    private void deleteTransaction(String txid) {
+
+    }
+
     public void rollback() {
         boolean success = true;
         DisTransactionInfo current = ThreadLocalHolder.getCurrent();
@@ -62,7 +66,7 @@ public class TransactionManager {
         if (success) {
             deleteTransaction(txid);
         } else {
-            alarm(txid);
+            alarmAndAdd(txid);
         }
         ThreadLocalHolder.clear();
     }
@@ -77,16 +81,15 @@ public class TransactionManager {
         if (success) {
             deleteTransaction(txid);
         } else {
-            alarm(txid);
+            alarmAndAdd(txid);
         }
         ThreadLocalHolder.clear();
     }
 
-    private void deleteTransaction(String txid) {
-
-    }
-
-    private void alarm(String txid) {
+    /**
+     * 存储分布式事务参与者信息
+     */
+    private void alarmAndAdd(String txid) {
 
     }
 
