@@ -7,8 +7,11 @@ package com.mao.test; /**
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.sql.DataSource;
 
 /**
  * @author 王东(hzwangdong @ corp.netease.com)
@@ -17,6 +20,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/application-test.xml")
 public class BaseTest {
+
+    @Autowired
+    protected DataSource dataSource;
 
     @Test
     public void init() {

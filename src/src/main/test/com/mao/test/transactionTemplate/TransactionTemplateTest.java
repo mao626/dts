@@ -8,7 +8,11 @@ package com.mao.test.transactionTemplate;
 
 import com.mao.test.BaseTest;
 import org.junit.Test;
-import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * @author 王东(hzwangdong @ corp.netease.com)
@@ -16,9 +20,97 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class TransactionTemplateTest extends BaseTest {
 
-    @Test
-    public void test() {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+    String insertSql = "insert into test(id, name) values(?,?)";
+    String updateSql = "update test set name=? where id=?";
+    String selectSql = "select * from test where id=?";
+    String deleteSql = "delete from test where id=?";
 
+    @Test
+    public void testInsert() {
+        Connection connection = null;
+        try {
+            connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(insertSql);
+            statement.setLong(1, 100);
+            statement.setString(2, "name-100");
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Test
+    public void testUpdate() {
+        Connection connection = null;
+        try {
+            connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(updateSql);
+            statement.setLong(2, 100);
+            statement.setString(1, "name-100-update");
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Test
+    public void testSelect() {
+        Connection connection = null;
+        try {
+            connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(selectSql);
+            statement.setLong(1, 100);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Test
+    public void testDelete() {
+        Connection connection = null;
+        try {
+            connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(deleteSql);
+            statement.setLong(1, 100);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

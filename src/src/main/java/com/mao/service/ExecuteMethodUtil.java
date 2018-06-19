@@ -1,6 +1,9 @@
 package com.mao.service;
 
+import com.alibaba.fastjson.JSON;
 import com.mao.bean.InvocationMethodInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,6 +11,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ExecuteMethodUtil {
+
+    private static final Logger logger = LoggerFactory.getLogger(ExecuteMethodUtil.class);
 
     private String txid;
 
@@ -28,7 +33,7 @@ public class ExecuteMethodUtil {
         try {
             InvokeService.invoke(commit);
         } catch (Exception e) {
-            // todo 日志
+            logger.error("execute commit error. commit:{}", JSON.toJSONString(commit));
             return false;
         }
         return true;
@@ -38,7 +43,7 @@ public class ExecuteMethodUtil {
         try {
             InvokeService.invoke(rollback);
         } catch (Exception e) {
-            // todo 日志
+            logger.error("execute rollback error. rollback:{}", JSON.toJSONString(rollback));
             return false;
         }
         return true;

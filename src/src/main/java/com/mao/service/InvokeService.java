@@ -17,7 +17,8 @@ import java.lang.reflect.Method;
  */
 public class InvokeService {
 
-    public static void invoke(InvocationMethodInfo invocationMethodInfo) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
+    public static void invoke(InvocationMethodInfo invocationMethodInfo)
+            throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
         Class targetClass = invocationMethodInfo.getTargetClass();
         Object instance = targetClass.newInstance();
         Method method = targetClass.getMethod(
