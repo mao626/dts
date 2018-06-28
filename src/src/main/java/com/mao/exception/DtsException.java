@@ -7,7 +7,7 @@
 package com.mao.exception;
 
 /**
- * @author 王东(hzwangdong @ corp.netease.com)
+ * @author 王东
  * @date 2018/6/13
  */
 public class DtsException extends RuntimeException {

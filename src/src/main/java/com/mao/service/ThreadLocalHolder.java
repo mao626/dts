@@ -9,7 +9,7 @@ package com.mao.service;
 import com.mao.bean.DisTransactionInfo;
 
 /**
- * @author 王东(hzwangdong @ corp.netease.com)
+ * @author 王东
  * @date 2018/5/1
  */
 public class ThreadLocalHolder {

@@ -193,4 +193,12 @@ public class TransactionManager {
                 new MyTransactionSynchronizationAdapter(this);
         TransactionSynchronizationManager.registerSynchronization(adapter);
     }
+
+    public DataSource getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 }

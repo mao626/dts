@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.sql.DataSource;
 
 /**
- * @author 王东(hzwangdong @ corp.netease.com)
+ * @author 王东
  * @date 2018/5/1
  */
 @RunWith(SpringJUnit4ClassRunner.class)

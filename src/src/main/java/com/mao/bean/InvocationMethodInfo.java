@@ -7,7 +7,7 @@
 package com.mao.bean;
 
 /**
- * @author 王东(hzwangdong @ corp.netease.com)
+ * @author 王东
  * @date 2018/5/1
  */
 public class InvocationMethodInfo {

@@ -16,6 +16,5 @@ CREATE TABLE DTS_PARTICIPANT (
   `context` varchar(1024) not null comment '事务参与者上下文环境',
   `createTime` bigint(20) not null comment '创建时间',
   `updateTime` bigint(20) not null comment '更新时间',
-  primary key (`id`),
   key `id_txid` (`txid`)
-) ENGINE=InnoDB DEFAULT CAHRSET=utf8mb4 comment='事务参与者表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 comment='事务参与者表';

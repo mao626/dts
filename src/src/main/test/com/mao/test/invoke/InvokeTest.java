@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author 王东(hzwangdong @ corp.netease.com)
+ * @author 王东
  * @date 2018/5/1
  */
 public class InvokeTest extends BaseTest {
