@@ -143,7 +143,6 @@ public class TransactionManager {
         boolean success = true;
         DisTransactionInfo current = ThreadLocalHolder.getCurrent();
         for (ExecuteMethodUtil util: current.getMethodUtilList()) {
-            success = success & util.commit();
             if (!util.commit()) {
                 success = false;
                 alarmAndAdd(util);
