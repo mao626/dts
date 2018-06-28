@@ -9,7 +9,10 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+
+import java.lang.reflect.Method;
 
 /**
  * Created by mao on 2018/5/1.
@@ -31,20 +34,17 @@ public class DisTransactionAspect {
      */
     @Around(value = "aspect() && @annotation(disTransaction)")
     public void around(ProceedingJoinPoint pjp, DisTransaction disTransaction) throws Throwable {
+        Method method = ((MethodSignature) (pjp.getSignature())).getMethod();
         Object[] args = pjp.getArgs();
-        Class[] argTypes = new Class[args.length];
-        for (int i = 0; i < args.length; i++) {
-            argTypes[i] = args[i].getClass();
-        }
         InvocationMethodInfo prepare = new InvocationMethodInfo(
                 pjp.getTarget().getClass(), disTransaction.prepare(),
-                args, argTypes);
+                args, method.getParameterTypes());
         InvocationMethodInfo rollback = new InvocationMethodInfo(
                 pjp.getTarget().getClass(), disTransaction.rollback(),
-                args, argTypes);
+                args, method.getParameterTypes());
         InvocationMethodInfo commit = new InvocationMethodInfo(
                 pjp.getTarget().getClass(), disTransaction.commit(),
-                args, argTypes);
+                args, method.getParameterTypes());
         String txid = ThreadLocalHolder.getCurrent().getTxid();
         ExecuteMethodUtil util = new ExecuteMethodUtil(txid, rollback, commit);
         ThreadLocalHolder.getCurrent().add(util);

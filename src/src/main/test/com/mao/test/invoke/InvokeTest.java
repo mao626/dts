@@ -5,12 +5,14 @@ package com.mao.test.invoke; /**
  * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
+import com.alibaba.fastjson.JSON;
 import com.mao.bean.InvocationMethodInfo;
 import com.mao.service.InvokeService;
 import com.mao.test.BaseTest;
 import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +46,22 @@ public class InvokeTest extends BaseTest {
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testType() {
+        Class targetClass = RunTest.class;
+        Class[] classes = new Class[]{int.class, java.lang.String.class, java.util.List.class};
+        try {
+            Method method = targetClass.getMethod("run1", classes);
+            for (Class<?> c : method.getParameterTypes()) {
+                System.out.println(c.getClass());
+            }
+            System.out.println(JSON.toJSONString(method.getParameterTypes()));
+            System.out.println(method.toString());
+        } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
     }
