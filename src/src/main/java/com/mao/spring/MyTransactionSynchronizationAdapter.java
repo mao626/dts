@@ -1,8 +1,8 @@
 package com.mao.spring;
 
 import com.mao.service.TransactionManager;
+import com.mao.util.LogUtil;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.transaction.support.TransactionSynchronization;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
 
@@ -11,7 +11,7 @@ import org.springframework.transaction.support.TransactionSynchronizationAdapter
  */
 public class MyTransactionSynchronizationAdapter extends TransactionSynchronizationAdapter {
 
-    private static final Logger logger = LoggerFactory.getLogger(MyTransactionSynchronizationAdapter.class);
+    private static final Logger logger = LogUtil.getLogger();
 
     private TransactionManager manager;
 

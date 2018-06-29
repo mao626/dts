@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.mao.bean.DisTransactionInfo;
 import com.mao.exception.DtsException;
 import com.mao.spring.MyTransactionSynchronizationAdapter;
+import com.mao.util.LogUtil;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
@@ -20,7 +20,7 @@ import java.util.UUID;
  */
 public class TransactionManager {
 
-    private static final Logger logger = LoggerFactory.getLogger(TransactionManager.class);
+    private static final Logger logger = LogUtil.getLogger();
 
     private DataSource dataSource;
     /**

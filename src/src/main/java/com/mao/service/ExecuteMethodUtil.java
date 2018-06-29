@@ -2,15 +2,15 @@ package com.mao.service;
 
 import com.alibaba.fastjson.JSON;
 import com.mao.bean.InvocationMethodInfo;
+import com.mao.util.LogUtil;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Created by mao on 2018/5/1.
  */
 public class ExecuteMethodUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(ExecuteMethodUtil.class);
+    private static final Logger logger = LogUtil.getLogger();
 
     private String txid;
 
